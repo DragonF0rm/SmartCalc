@@ -23,15 +23,17 @@ public class MainActivity extends AppCompatActivity {
 
         int q = 0;
 
-        String N1 = "-1234567890abcdefghijklmnopqrstuvABCDEFGHIJKLMNOPQRSTUV";
+        String N1 = "abcdefghijklmnopqrstuvABCDEFGHIJKLMNOPQRSTUV";
+
+        String N2 = "-1234567890";
 
         String ch = "";
 
         for ( int i = 0; i < a.length(); i++) {
 
-            for ( int z = 0; z < N1.length(); z++) {
+            for ( int z = 0; z < N2.length(); z++) {
 
-                if ( a.charAt(i) == N1.charAt(z) ) {
+                if ( a.charAt(i) == N2.charAt(z) ) {
 
                     q ++;
 
@@ -39,9 +41,9 @@ public class MainActivity extends AppCompatActivity {
 
         for ( int i = 0; i < b.length(); i++) {
 
-            for ( int z = 0; z < N1.length(); z++) {
+            for ( int z = 0; z < N2.length(); z++) {
 
-                if ( b.charAt(i) == N1.charAt(z) ) {
+                if ( b.charAt(i) == N2.charAt(z) ) {
 
                     p ++;
 
@@ -100,6 +102,16 @@ public class MainActivity extends AppCompatActivity {
                     for ( int z = 0; z < N1.length(); z++) {
 
                         if ( c.charAt(i) == N1.charAt(z) ) {
+
+                            n ++;
+
+                        } } }
+
+                for ( int i = 0; i < c.length(); i++) {
+
+                    for ( int z = 0; z < N2.length(); z++) {
+
+                        if ( c.charAt(i) == N2.charAt(z) ) {
 
                             n ++;
 
