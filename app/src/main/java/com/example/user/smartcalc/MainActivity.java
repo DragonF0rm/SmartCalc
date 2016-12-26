@@ -15,107 +15,108 @@ public class MainActivity extends AppCompatActivity {
     EditText ch2;
     EditText ch3;
 
-    static String SystemOfNumeration ( int a, int b, long c) {
+    static String SystemOfNumeration ( String a, String b, String c) {
+
+        int n = 0;
+
+        int p = 0;
+
+        int q = 0;
+
+        String N1 = "-1234567890abcdefghijklmnopqrstuvABCDEFGHIJKLMNOPQRSTUV";
 
         String ch = "";
 
-        if ( a == 10) {
+        for ( int i = 0; i < a.length(); i++) {
 
-            switch(b) {
+            for ( int z = 0; z < N1.length(); z++) {
 
-                case 2 : ch=Long.toString(c,2);
+                if ( a.charAt(i) == N1.charAt(z) ) {
 
-                    break;
+                    q ++;
 
-                case 8 : ch=Long.toString(c,8);
+                } } }
 
-                    break;
+        for ( int i = 0; i < b.length(); i++) {
 
-                case 16 : ch=Long.toString(c,16);
+            for ( int z = 0; z < N1.length(); z++) {
 
-                    break;
+                if ( b.charAt(i) == N1.charAt(z) ) {
 
-            }
+                    p ++;
 
-        }
+                } } }
 
+        if ( q != a.length() || p != b.length() || (q != a.length() && p != b.length()) || Integer.parseInt(c, 32) % 32 >= Integer.parseInt(a)) {
 
-        if ( a == 2) {
-
-            String S = Long.toString(c);
-
-
-
-            switch(b) {
-
-                case 10 : ch = Long.toString(Long.parseLong(S, 2));
-
-                    break;
-
-                case 8 : ch = Long.toString((Long.parseLong(S, 2)),8);
-
-                    break;
-
-                case 16 : ch = Long.toString((Long.parseLong(S, 2)),16);
-
-                    break;
-
-            }
-
+            ch = "Неправильные вxодные данные";
         }
 
 
 
-        if ( a == 16) {
+        else if ( q == a.length() && p == b.length()) {
 
-            String S = Long.toString(c);
 
-            switch(b) {
+            if ( (Integer.parseInt(a) < 2 || Integer.parseInt(a) > 32)  || (Integer.parseInt(b) > 32 || Integer.parseInt(b) < 2) || (Integer.parseInt(a) < 2 && Integer.parseInt(b) > 32) || (Integer.parseInt(b) < 2 && Integer.parseInt(a) > 32) ) {
 
-                case 2 : ch = Long.toString((Long.parseLong(S, 16)),2);
 
-                    break;
+                if (Integer.parseInt(a) < 2) {
 
-                case 8 : ch = Long.toString((Long.parseLong(S, 16)),8);
+                    ch = "Системы счисления с основанием " + a + " не существует";
 
-                    break;
+                }
 
-                case 10 : ch = Long.toString(Long.parseLong(S, 16));
+                if ( Integer.parseInt(b) > 32) {
 
-                    break;
+                    ch = "Системы счисления с основанием " + b + " не существует";
+                }
 
-            }
+                if (Integer.parseInt(a) < 2 && Integer.parseInt(b) > 32) {
 
-        }
+                    ch = "Таких систем счисления не существует";
+                }
 
-        if ( a == 8) {
+                if ( Integer.parseInt(b) < 2) {
 
-            String S = Long.toString(c);
+                    ch = "Системы счисления с основанием " + b + " не существует";
+                }
 
-            switch(b) {
+                if ( Integer.parseInt(a) > 32) {
 
-                case 2 : ch = Long.toString((Long.parseLong(S, 8)),2);
+                    ch = "Системы счисления с основанием " + a + " не существует";
+                }
 
-                    break;
+                if (Integer.parseInt(b) < 2 && Integer.parseInt(a) > 32) {
 
-                case 10 : ch = Long.toString(Long.parseLong(S, 8));
-
-                    break;
-
-                case 16 : ch = Long.toString((Long.parseLong(S, 8)),16);
-
-                    break;
+                    ch = "Таких систем счисления не существует";
+                }
 
             }
 
-        }
+            else  {
 
+                for ( int i = 0; i < c.length(); i++) {
 
+                    for ( int z = 0; z < N1.length(); z++) {
 
+                        if ( c.charAt(i) == N1.charAt(z) ) {
 
+                            n ++;
 
+                        } } }
+
+                if ( n == c.length()) {
+
+                    ch = Long.toString(Long.parseLong(c, Integer.parseInt(a)), Integer.parseInt(b));
+
+                }
+
+                else {
+
+                    ch = "Недопустимый символ"; } } }
 
         return ch;
+
     }
 
     @Override
@@ -139,13 +140,7 @@ public class MainActivity extends AppCompatActivity {
 
                 String S3 = ch3.getText().toString();
 
-                int a = Integer.parseInt(S1);
-
-                int b = Integer.parseInt(S2);
-
-                int c = Integer.parseInt(S3);
-
-                String z = SystemOfNumeration(a, b ,c);
+                String z = SystemOfNumeration(S1, S2 ,S3);
 
                 myTX.setText(z);
 
