@@ -46,9 +46,8 @@
             android:id="@+id/myBT" />
 
         <TextView
-            android:layout_height="38dp"
+            android:layout_height="377dp"
             android:id="@+id/myTX"
-            android:layout_width="40dp"
-            android:layout_weight="0.48" />
+            android:layout_width="113dp" />
     </LinearLayout>
 </RelativeLayout>

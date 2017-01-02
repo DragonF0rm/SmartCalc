@@ -15,17 +15,19 @@ public class MainActivity extends AppCompatActivity {
     EditText ch2;
     EditText ch3;
 
-    static String SystemOfNumeration ( String a, String b, String c) {
+    static String SystemOfNumeration ( String a, String b, String c) { // начало функции
 
-        int n = 0;
+        long n = 0;
 
-        int p = 0;
+        long n2 = 0;
 
-        int q = 0;
+        long p = 0;
 
-        String N1 = "abcdefghijklmnopqrstuvABCDEFGHIJKLMNOPQRSTUV";
+        long q = 0;
 
-        String N2 = "-1234567890";
+        String N1 = "abcdefghijklmnopqrstuvABCDEFGHIJKLMNOPQRSTUV"; //значения , которые можно использовать
+
+        String N2 = "-1234567890"; //значения , которые можно использовать
 
         String ch = "";
 
@@ -37,7 +39,9 @@ public class MainActivity extends AppCompatActivity {
 
                     q ++;
 
-                } } }
+                }
+            }
+        } // цикл , который проверяет , все ли символы в первом числе евляются допустимыми
 
         for ( int i = 0; i < b.length(); i++) {
 
@@ -47,16 +51,38 @@ public class MainActivity extends AppCompatActivity {
 
                     p ++;
 
-                } } }
 
-        if ( q != a.length() || p != b.length() || (q != a.length() && p != b.length()) || Integer.parseInt(c, 32) % 32 >= Integer.parseInt(a)) {
+                }
+            }
+        } // цикл , который проверяет , все ли символы во втором числе евляются допустимыми
 
-            ch = "Неправильные вxодные данные";
-        }
+        for ( int i = 0; i < c.length(); i++) {
 
+            for ( int z = 0; z < N1.length(); z++) {
 
+                if ( c.charAt(i) == N1.charAt(z) ) {
 
-        else if ( q == a.length() && p == b.length()) {
+                    n ++;
+
+                }
+
+            }
+
+            for ( int z = 0; z < N2.length(); z++) {
+
+                if ( c.charAt(i) == N2.charAt(z) ) {
+
+                    n ++;
+
+                    n2 ++;
+
+                }
+
+            }
+
+        } // 2 цикла , которые проверяют , все ли символы в третьем числе евляются допустимыми
+
+        if ( q == a.length() && p == b.length() && n == c.length()) {
 
 
             if ( (Integer.parseInt(a) < 2 || Integer.parseInt(a) > 32)  || (Integer.parseInt(b) > 32 || Integer.parseInt(b) < 2) || (Integer.parseInt(a) < 2 && Integer.parseInt(b) > 32) || (Integer.parseInt(b) < 2 && Integer.parseInt(a) > 32) ) {
@@ -64,68 +90,110 @@ public class MainActivity extends AppCompatActivity {
 
                 if (Integer.parseInt(a) < 2) {
 
+
                     ch = "Системы счисления с основанием " + a + " не существует";
 
                 }
+
 
                 if ( Integer.parseInt(b) > 32) {
 
+
                     ch = "Системы счисления с основанием " + b + " не существует";
+
                 }
+
 
                 if (Integer.parseInt(a) < 2 && Integer.parseInt(b) > 32) {
 
+
                     ch = "Таких систем счисления не существует";
+
                 }
+
 
                 if ( Integer.parseInt(b) < 2) {
 
+
                     ch = "Системы счисления с основанием " + b + " не существует";
+
                 }
+
 
                 if ( Integer.parseInt(a) > 32) {
 
+
                     ch = "Системы счисления с основанием " + a + " не существует";
+
                 }
+
 
                 if (Integer.parseInt(b) < 2 && Integer.parseInt(a) > 32) {
 
+
                     ch = "Таких систем счисления не существует";
+
+
+                }
+
+
+            }
+
+
+            else {
+
+
+                if ( Integer.parseInt(a) <= 10) {
+
+
+                    if ( n2 != c.length()) {
+
+                        ch = ("Используются недопустимые значиня для системы счисления с основанием " + a);
+
+                    }
+
+
+                    else {
+
+                        if (Integer.parseInt(c) % 10 >= Integer.parseInt(a) || Integer.parseInt(c) / 10 >= Integer.parseInt(a)) { // ошибка для допустим значений чисел с основаниями 2-10
+
+                            ch = ("Используются недопустимые значиня для системы счисления с основанием " + a);
+
+                        }
+
+                        else if ( Integer.parseInt(c) % 10 < Integer.parseInt(a) || Integer.parseInt(c) / 10 < Integer.parseInt(a)) {
+
+                            ch = Long.toString(Long.parseLong(c, Integer.parseInt(a)), Integer.parseInt(b));
+                        }
+
+                    }
+
+                }
+
+                else if ( Integer.parseInt(a) > 10) {
+
+                    if (Integer.parseInt(c, 32) % 32 >= Integer.parseInt(a) || Integer.parseInt(c, 32) / 32 >= Integer.parseInt(a)) { // ошибка для допустим значений чисел с основаниями 11-32
+
+                        ch = ("Используются недопустимые значиня для системы счисления с основанием " + a);
+
+                    }
+
+                    else if (Integer.parseInt(c, 32) % 32 < Integer.parseInt(a) || Integer.parseInt(c, 32) / 32 < Integer.parseInt(a)) {
+
+                        ch = Long.toString(Long.parseLong(c, Integer.parseInt(a)), Integer.parseInt(b));
+                    }
+
                 }
 
             }
 
-            else  {
 
-                for ( int i = 0; i < c.length(); i++) {
+        }
 
-                    for ( int z = 0; z < N1.length(); z++) {
+        else  {
 
-                        if ( c.charAt(i) == N1.charAt(z) ) {
-
-                            n ++;
-
-                        } } }
-
-                for ( int i = 0; i < c.length(); i++) {
-
-                    for ( int z = 0; z < N2.length(); z++) {
-
-                        if ( c.charAt(i) == N2.charAt(z) ) {
-
-                            n ++;
-
-                        } } }
-
-                if ( n == c.length()) {
-
-                    ch = Long.toString(Long.parseLong(c, Integer.parseInt(a)), Integer.parseInt(b));
-
-                }
-
-                else {
-
-                    ch = "Недопустимый символ"; } } }
+            ch = "Неправильные входные данные";
+        }
 
         return ch;
 
